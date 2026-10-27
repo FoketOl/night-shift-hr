@@ -76,7 +76,8 @@
   .opt{text-align:center;padding:16px 10px}
   .opt b{display:block;font-size:28px;margin-bottom:6px}
   .opt.sel{outline:2px solid var(--arc);background:#1e3a6a}
-  input[type=date],select{width:100%;font:600 16px Inter;padding:12px;border-radius:12px;border:1px solid #2f3d75;background:#0d1530;color:var(--ink);color-scheme:dark}
+  .opt.wide{grid-column:1/-1}
+  input[type=text],input[type=date],select{width:100%;font:600 16px Inter;padding:12px;border-radius:12px;border:1px solid #2f3d75;background:#0d1530;color:var(--ink);color-scheme:dark}
   label{display:block;font-weight:600;margin:14px 0 6px}
   .cert{border:2px dashed var(--gold);border-radius:16px;padding:18px;text-align:center;background:#1a1730}
   .cert h2{color:var(--gold)}
@@ -106,9 +107,9 @@
       <div class="owl"><div class="reactor big"></div></div>
       <h1>Goedenavond, Miss Daphne.</h1>
       <p>Welkom bij <b>Night Shift HR</b>. Ik ben <b>J.A.R.V.I.S.</b>, vandaag dossierbeheerder van dienst. Jij kent dat werk, dus dit gaat vlot.</p>
-      <div class="bubble">Er werd een aanvraag ingediend om jouw <b>time slot</b> uit te breiden: van "'s avonds via de app" naar <b>"in het echt, met eten erbij"</b>.<br><br>Vooraleer we dat goedkeuren: een korte screening. Geen 255 fiches, beloofd.</div>
+      <div class="bubble">Er werd een aanvraag ingediend om jouw <b>time slot</b> uit te breiden: van "'s avonds via de app" naar <b>"in het echt"</b>. Eten pas bij dossier 2, quick exit voorzien.<br><br>Vooraleer we dat goedkeuren: een korte screening. Geen 255 fiches, beloofd.</div>
       <div class="btns"><button class="primary" data-next>Start screening</button></div>
-      <p class="muted" style="text-align:center;margin-top:12px">Geschatte duur: 2 minuten.</p>
+      <p class="muted" style="text-align:center;margin-top:12px">Geschatte duur: 3 minuten.</p>
     </section>
 
     <!-- 1 Mjolnir -->
@@ -172,12 +173,52 @@
       <div class="btns"><button class="primary" data-next id="n5" style="display:none">Volgende</button></div>
     </section>
 
-    <!-- 6 the ask -->
+    <!-- 6 vibranium -->
     <section class="step" data-step="6">
+      <h2>Vraag 6 · Materiaalkennis</h2>
+      <p>Het schild van Captain America is gemaakt van:</p>
+      <div class="btns" id="shield">
+        <button>Adamantium</button>
+        <button>Vibranium</button>
+        <button>Massieve eik, zelf ontworpen en gebouwd met papa</button>
+      </div>
+      <div class="feedback" id="fb10"></div>
+      <div class="btns"><button class="primary" data-next id="n10" style="display:none">Volgende</button></div>
+    </section>
+
+    <!-- 7 avatar -->
+    <section class="step" data-step="7">
+      <h2>Vraag 7 · Avatar</h2>
+      <p>Wie is objectief het beste personage?</p>
+      <div class="btns" id="avatar">
+        <button>Aang</button>
+        <button>Sokka</button>
+        <button>Zuko</button>
+        <button>Die nieuwe art-stijl van Seven Havens</button>
+      </div>
+      <div class="feedback" id="fb11"></div>
+      <div class="btns"><button class="primary" data-next id="n11" style="display:none">Volgende</button></div>
+    </section>
+
+    <!-- 8 snor -->
+    <section class="step" data-step="8">
+      <h2>Vraag 8 · Veiligheidscontrole</h2>
+      <p>Welke look doet JARVIS het dossier onmiddellijk verscheuren?</p>
+      <div class="btns" id="snor">
+        <button>Baard + snor</button>
+        <button>Kaal</button>
+        <button>Snor zonder baard</button>
+      </div>
+      <div class="feedback" id="fb12"></div>
+      <div class="btns"><button class="primary" data-next id="n12" style="display:none">Volgende</button></div>
+    </section>
+
+    <!-- the ask -->
+    <section class="step" data-step="ask">
       <div class="owl"><div class="reactor big"></div></div>
       <h1>Screening geslaagd.</h1>
       <p>Dossier compleet, waardigheid bevestigd. Dan nu de eigenlijke vraag, en die stelt Olivier zelf:</p>
-      <div class="bubble" style="font-size:18px"><b>Daphne, ga je met mij mee op date?</b><br><span class="muted">Tip: begin je antwoord met "Ja". Dat doe je toch al.</span></div>
+      <div class="bubble" style="font-size:18px"><b>Daphne, spreken we eens af?</b><br><span class="muted">Geen date-label, beloofd. Tip: begin je antwoord met "Ja". Dat doe je toch al.</span></div>
       <div class="ask" id="askZone">
         <div class="btns">
           <button class="primary" id="yesBtn">Ja!</button>
@@ -188,24 +229,33 @@
       <button class="reset" id="realNo">Echt nee, nog even niet</button>
     </section>
 
-    <!-- 7 plan -->
-    <section class="step" data-step="7">
+    <!-- plan -->
+    <section class="step" data-step="plan">
       <h2>Plan je time slot</h2>
       <p>Kies een activiteit. Allemaal goedgekeurd door Night Shift HR.</p>
       <div class="grid2" id="acts">
-        <button class="opt" data-v="Bowling (die we al 2 keer vergaten vast te leggen)"><b>🎳</b>Bowling<br><span class="muted">eindelijk</span></button>
+        <button class="opt" data-v="Bowling (jouw idee, al 2 keer vergeten vast te leggen)"><b>🎳</b>Bowling<br><span class="muted">jouw idee, eindelijk</span></button>
         <button class="opt" data-v="Escape room (USB-sticks oprapen verboden)"><b>🔐</b>Escape room<br><span class="muted">geen USB-sticks</span></button>
-        <button class="opt" data-v="Pizza of spaghetti gaan eten"><b>🍕</b>Pizza of spaghetti<br><span class="muted">gewoon lekker eten</span></button>
+        <button class="opt" data-v="Op jacht naar een aardbeienmilkshake"><b>🍓</b>Milkshake-jacht<br><span class="muted">de enige aardbeien-milkshake van België vinden</span></button>
         <button class="opt" data-v="Movie night in de cinema"><b>🍿</b>Cinema<br><span class="muted">movie night, geen ondertitels syncen</span></button>
+        <button class="opt wide" data-v="other"><b>✏️</b>Iets anders<br><span class="muted">jij kiest, JARVIS keurt goed</span></button>
       </div>
+      <input type="text" id="otherAct" placeholder="Wat had je in gedachten?" maxlength="80" style="display:none;margin-top:10px">
+      <label for="city">Waar?</label>
+      <select id="city">
+        <option>Brussel</option>
+        <option>Gent</option>
+        <option>Leuven</option>
+        <option>Maakt niet uit (behalve Aalst)</option>
+      </select>
       <label for="day">Welke dag?</label>
       <input type="date" id="day">
       <div class="feedback" id="fb8"></div>
       <div class="btns"><button class="primary" id="n8">Bevestig aanvraag</button></div>
     </section>
 
-    <!-- 8 cert -->
-    <section class="step" data-step="8">
+    <!-- cert -->
+    <section class="step" data-step="cert">
       <div class="cert">
         <div class="owl"><div class="reactor big"></div></div>
         <h2>Time slot-uitbreiding goedgekeurd</h2>
@@ -217,8 +267,8 @@
       <button class="reset" data-reset>Opnieuw beginnen</button>
     </section>
 
-    <!-- 9 on hold: de echte nee -->
-    <section class="step" data-step="9">
+    <!-- on hold: de echte nee -->
+    <section class="step" data-step="hold">
       <div class="owl"><div class="reactor big"></div></div>
       <h2>Dossier on hold</h2>
       <p>Genoteerd, en helemaal oké. Geen druk, geen vervolgbrieven van HR.</p>
@@ -241,12 +291,15 @@ const bar = document.getElementById('bar');
 let cur = 0;
 const answers = {};
 
+const idx = name => steps.findIndex(s => s.dataset.step === name);
+
 function go(i){
   steps[cur].classList.remove('on');
   cur = i;
   steps[cur].classList.add('on');
-  // stap 8 (certificaat) is het einde; stap 9 (on hold) is een zijtak
-  bar.style.width = (Math.min(cur, 8) / 8 * 100) + '%';
+  // certificaat is het einde; on hold is een zijtak
+  const end = idx('cert');
+  bar.style.width = (Math.min(cur, end) / end * 100) + '%';
   window.scrollTo({top:0,behavior:'smooth'});
   if (cur === 1) startIq();
   if (cur === 5) startSubs();
@@ -346,6 +399,37 @@ document.querySelectorAll('#gram button').forEach((b, i) => b.onclick = () => {
   if (i === 1) reveal(4);
 });
 
+// 6 Vibranium (de eik is fout, maar verdient respect)
+document.querySelectorAll('#shield button').forEach((b, i) => b.onclick = () => {
+  const msgs = [
+    'Adamantium is van Wolverine. Dat weet jij beter.',
+    'Vibranium. ✅ Wakanda keurt goed.',
+    'Technisch fout. Maar eerlijk: dat van jou zou steviger zijn.'
+  ];
+  fb(10, msgs[i], i === 1 ? 'ok' : 'warn');
+  reveal(10);
+});
+
+// 7 Avatar
+document.querySelectorAll('#avatar button').forEach((b, i) => b.onclick = () => {
+  const msgs = [
+    'Respectabel. Maar fout.',
+    'Grappig, maar fout.',
+    'Zuko. ✅ Honor. Daar zijn Olivier en jij het al lang over eens.',
+    'JARVIS weigert dit antwoord te registreren.'
+  ];
+  fb(11, msgs[i], i === 2 ? 'ok' : 'warn');
+  if (i === 2) reveal(11);
+});
+
+// 8 Snor zonder baard = pure gruwel
+document.querySelectorAll('#snor button').forEach((b, i) => b.onclick = () => {
+  fb(12, i === 2
+    ? 'Pure gruwel. ✅ Genoteerd in het dossier van Olivier: nooit doen.'
+    : 'Nee hoor, dat mag. Er is maar één echte gruwel.', i === 2 ? 'ok' : 'warn');
+  if (i === 2) reveal(12);
+});
+
 // 5 Subtitles: zin verschijnt even, druk SYNC terwijl hij zichtbaar is
 const subLines = ['Ja.', 'Ja, maar…', 'Ja, Olivier vraagt je mee uit.'];
 let subTimer = null, subVisible = false, subMs = 0, synced = false;
@@ -403,14 +487,14 @@ function yes(){
   answers.dodges = dodges;
   confetti();
   fb(7, 'JARVIS wist het. ⚡', 'ok');
-  setTimeout(() => go(7), 1200);
+  setTimeout(() => go(idx('plan')), 1200);
 }
 document.getElementById('yesBtn').onclick = yes;
 // De echte nee: geen grap, gewoon respecteren
 document.getElementById('realNo').onclick = () => {
   const msg = 'Night Shift HR ⚡ Dossier on hold. Nog even niet, maar de Night Shift blijft open.';
   document.getElementById('waHold').href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
-  go(9);
+  go(idx('hold'));
 };
 
 // 8 Plannen
@@ -418,31 +502,37 @@ let act = null;
 document.querySelectorAll('#acts .opt').forEach(b => b.onclick = () => {
   document.querySelectorAll('#acts .opt').forEach(x => x.classList.remove('sel'));
   b.classList.add('sel'); act = b.dataset.v;
+  otherAct.style.display = act === 'other' ? 'block' : 'none';
+  if (act === 'other') otherAct.focus();
 });
+const otherAct = document.getElementById('otherAct');
 const day = document.getElementById('day');
 day.min = new Date().toISOString().slice(0, 10);
 // Weekends waarop Olivier niet kan (ISO-datums)
 const BLOCKED = ['2026-10-30', '2026-10-31', '2026-11-01'];
 document.getElementById('n8').onclick = () => {
   if (!act) return fb(8, 'Kies eerst een activiteit.', 'warn');
+  if (act === 'other' && !otherAct.value.trim()) return fb(8, 'Vul nog in wat je in gedachten had.', 'warn');
   if (!day.value) return fb(8, 'Kies nog een dag.', 'warn');
   if (BLOCKED.includes(day.value)) return fb(8, 'Die dag is Olivier al volgeboekt. Andere dag?', 'warn');
   if (new Date(day.value).getDay() === 0) return fb(8, 'Zondag = fietsen met papa. Andere dag?', 'warn');
-  answers.act = act;
+  answers.act = act === 'other' ? otherAct.value.trim() : act;
+  answers.city = document.getElementById('city').value;
   answers.day = new Date(day.value).toLocaleDateString('nl-BE', {weekday: 'long', day: 'numeric', month: 'long'});
   buildCert();
-  go(8);
+  go(idx('cert'));
 };
 
 // 9 Certificaat + WhatsApp-terugkoppeling
+const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 function buildCert(){
   document.getElementById('certText').innerHTML =
     `Aanvrager: <b>Olivier</b><br>Goedgekeurd door: <b>Daphne</b><br><br>
-     Activiteit: <b>${answers.act}</b><br>Datum: <b>${answers.day}</b><br>
+     Activiteit: <b>${esc(answers.act)}</b><br>Waar: <b>${answers.city}</b><br>Datum: <b>${answers.day}</b><br>
      Worthiness-test: <b>${answers.iq} s</b><br>
      Aantal keer "Nee" proberen te pakken: <b>${answers.dodges}</b>`;
   const msg = `Night Shift HR ⚡ Time slot-uitbreiding goedgekeurd.\n` +
-    `Activiteit: ${answers.act}\nDatum: ${answers.day}\nWorthiness-test: ${answers.iq} s\n` +
+    `Activiteit: ${answers.act}\nWaar: ${answers.city}\nDatum: ${answers.day}\nWorthiness-test: ${answers.iq} s\n` +
     `Nee-pogingen: ${answers.dodges}\nWaardig: ja ⚡`;
   document.getElementById('waBtn').href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
   confetti(['🎳','⚡','⚡','✨']);
