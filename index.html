@@ -107,7 +107,7 @@
       <div class="owl"><div class="reactor big"></div></div>
       <h1>Goedenavond, Miss Daphne.</h1>
       <p>Welkom bij <b>Night Shift HR</b>. Ik ben <b>J.A.R.V.I.S.</b>, vandaag dossierbeheerder van dienst. Jij kent dat werk, dus dit gaat vlot.</p>
-      <div class="bubble">Er werd een aanvraag ingediend om jouw <b>time slot</b> uit te breiden: van "'s avonds via de app" naar <b>"in het echt"</b>. Eten pas bij dossier 2, quick exit voorzien.<br><br>Vooraleer we dat goedkeuren: een korte screening. Geen 255 fiches, beloofd.</div>
+      <div class="bubble">Er werd een aanvraag ingediend om jouw <b>time slot</b> uit te breiden: van "'s avonds via de app" naar <b>"in het echt"</b>. Quick exit voorzien.<br><br>Vooraleer we dat goedkeuren: een korte screening. Geen 255 fiches, beloofd.</div>
       <div class="btns"><button class="primary" data-next>Start screening</button></div>
       <p class="muted" style="text-align:center;margin-top:12px">Geschatte duur: 3 minuten.</p>
     </section>
@@ -232,8 +232,10 @@
     <!-- plan -->
     <section class="step" data-step="plan">
       <h2>Plan je time slot</h2>
-      <p>Kies een activiteit. Allemaal goedgekeurd door Night Shift HR.</p>
+      <div class="bubble" id="city" data-v="La Romantica, Pamel">📍 <b>La Romantica</b>, Pamel<br><span class="muted">Pizza staat vast. Goedgekeurd door Night Shift HR.</span></div>
+      <p>Doen we er nog iets bij, ervoor of erna?</p>
       <div class="grid2" id="acts">
+        <button class="opt wide" data-v="Gewoon pizza, dat is genoeg"><b>🍕</b>Gewoon pizza<br><span class="muted">dat is genoeg</span></button>
         <button class="opt" data-v="Bowling (jouw idee, al 2 keer vergeten vast te leggen)"><b>🎳</b>Bowling<br><span class="muted">jouw idee, eindelijk</span></button>
         <button class="opt" data-v="Escape room (USB-sticks oprapen verboden)"><b>🔐</b>Escape room<br><span class="muted">geen USB-sticks</span></button>
         <button class="opt" data-v="Op jacht naar een aardbeienmilkshake"><b>🍓</b>Milkshake-jacht<br><span class="muted">de enige aardbeien-milkshake van België vinden</span></button>
@@ -241,13 +243,6 @@
         <button class="opt wide" data-v="other"><b>✏️</b>Iets anders<br><span class="muted">jij kiest, JARVIS keurt goed</span></button>
       </div>
       <input type="text" id="otherAct" placeholder="Wat had je in gedachten?" maxlength="80" style="display:none;margin-top:10px">
-      <label for="city">Waar?</label>
-      <select id="city">
-        <option>Brussel</option>
-        <option>Gent</option>
-        <option>Leuven</option>
-        <option>Maakt niet uit (behalve Aalst)</option>
-      </select>
       <label for="day">Welke dag?</label>
       <input type="date" id="day">
       <div class="feedback" id="fb8"></div>
@@ -509,15 +504,17 @@ const otherAct = document.getElementById('otherAct');
 const day = document.getElementById('day');
 day.min = new Date().toISOString().slice(0, 10);
 // Weekends waarop Olivier niet kan (ISO-datums)
-const BLOCKED = ['2026-10-30', '2026-10-31', '2026-11-01'];
+const BLOCKED = ['2026-10-30', '2026-10-31'];
+// Zondagen die toch vrij zijn
+const SUNDAY_OK = ['2026-11-01'];
 document.getElementById('n8').onclick = () => {
   if (!act) return fb(8, 'Kies eerst een activiteit.', 'warn');
   if (act === 'other' && !otherAct.value.trim()) return fb(8, 'Vul nog in wat je in gedachten had.', 'warn');
   if (!day.value) return fb(8, 'Kies nog een dag.', 'warn');
   if (BLOCKED.includes(day.value)) return fb(8, 'Die dag is Olivier al volgeboekt. Andere dag?', 'warn');
-  if (new Date(day.value).getDay() === 0) return fb(8, 'Zondag = fietsen met papa. Andere dag?', 'warn');
+  if (new Date(day.value).getDay() === 0 && !SUNDAY_OK.includes(day.value)) return fb(8, 'Zondag = fietsen met papa. Andere dag?', 'warn');
   answers.act = act === 'other' ? otherAct.value.trim() : act;
-  answers.city = document.getElementById('city').value;
+  answers.city = document.getElementById('city').dataset.v;
   answers.day = new Date(day.value).toLocaleDateString('nl-BE', {weekday: 'long', day: 'numeric', month: 'long'});
   buildCert();
   go(idx('cert'));
